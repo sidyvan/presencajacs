@@ -1,0 +1,54 @@
+{% extends 'secretaria/base.html' %}
+{% block content %}
+
+<form>
+	<div class="col-md-10">
+	<input type="text" name="q" class="form-control" placeholder ="Pesquisar por aluno">
+	</div>
+	<div class="col-md-2">
+		<button class="btn btn-default">Pesquisar</button>
+	</div>
+</form>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th width="20%">RA</th>
+        <th>Nome</th>
+       
+        
+      </tr>
+    </thead>
+    <tbody>
+    {% for l in alunos %}
+      <tr>
+          <td>
+            <a href="/detalhe/{{ l.ra }}"> {{ l.ra }} </a>
+
+          </td>
+          <td>
+            {{ l.nome }}
+          </td>
+       </tr>
+     
+       {% endfor %}
+    </tbody>
+  </table>
+<hr>
+<div class="pagination">
+    <span class="step-links">
+        {% if alunos.has_previous %}
+            <a href="?page={{ alunos.previous_page_number }}">anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ alunos.number }} de {{ alunos.paginator.num_pages }}.
+        </span>
+
+        {% if alunos.has_next %}
+            <a href="?page={{ alunos.next_page_number }}">próxima</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock content %}

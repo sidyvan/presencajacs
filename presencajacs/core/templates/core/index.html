@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<img class="img img-responsive" src="/media/jacs-banner.jpg" />
+	</div>
+</div>
+<hr>
+<div class="row">
+	<div class="col-md-4">
+		<ul class="list-group">
+
+		  <li class="list-group-item">
+		    <span class="badge"> {{ total_entrada | length }} </span>
+		    Total de alunos
+		  </li>
+
+		  <li class="list-group-item">
+		    <span class="badge"></span>
+		   
+		  </li>
+
+
+		</ul>
+	</div>
+</div>
+
+{% endblock content %}

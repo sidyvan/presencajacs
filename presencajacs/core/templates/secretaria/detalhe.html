@@ -1,0 +1,32 @@
+{% extends 'secretaria/base.html' %}
+{% block content %}
+
+<h4>Aluno : {{ aluno }}</h4><br>
+Total de tempo = {{ soma }}
+<hr>
+
+ <table class="table">
+    <thead>
+      <tr>
+        <th>RA</th>
+        <th>Entrada</th>
+        <th>Saída</th>
+        <th>Tempo</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for l in lista %}
+      <tr>
+        <td>{{ l.ra }}</td>
+        <td>{{ l.data_hora_entrada }}</td>
+        <td>{{ l.data_hora_saida }}</td>
+        <td>{{ l.tempo  }}</td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+
+
+{% endblock %}

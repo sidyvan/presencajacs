@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+{% block content %}
+{{ date_hora }}
+<div class="alert alert-danger alert-dismissible fade in" role="alert"> 
+
+<p>Infrome uma data e hora para registrar a saída de todos</p>
+    <form method="POST">{% csrf_token %}
+     
+   
+
+      <input type="datetimepicker" class="form-control" name="datahora" id="datahora" value="2017-08-22 17:00:00.111111" name="datahora" >
+
+
+
+
+      <button type="submit" class="btn btn-danger" value="Saída">OK</button>
+    </form>
+  
+  </div>
+<script>
+jQuery(function($){
+
+  $("#datahora").mask("99/99/9999 99:99:99.999999");
+
+  });
+</script>
+
+  <hr>
+   <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>RA</th>
+        <th>Entrada</th>
+     
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for l in lista_dentro %}
+      <tr>
+        <td>{{ l.ra }}</td>
+        <td width="20%">{{ l.data_hora_entrada  |date:"D d M Y : g:i:s"  }}</td>
+     
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock content %}

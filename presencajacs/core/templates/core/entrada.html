@@ -1,0 +1,94 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+</div>
+</div>
+
+	<div class = 'jumbotron'>
+		<div class="container">
+    Entrada
+			<form method="POST" id='formulario' name="formulario"   > {% csrf_token %}
+      
+				<input type="text" class="form-control" name="ra" autofocus maxlength="6" minlength="6">
+			
+			</form>	
+
+		</div>	
+	</div>
+
+
+<div class="container">
+<div class="col-md-6">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Aluno</th>
+        <th>Entrada</th>
+        <th>Saída</th>
+        <th>tempo</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for l in lista %}
+      
+
+        <tr>
+          <td>{{ l.ra }}</td>
+          <td>{{ l.data_hora_entrada |date:"D d M Y : g:i:s  " }}</td>
+          <td>
+
+
+            {{ l.data_hora_saida  |date:"D d M Y : g:i:s   "  }}
+
+          </td>
+          <td> 
+          {{ l.tempo   }}
+           </td>
+          
+
+        </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+  <div class="pagination">
+    <span class="step-links">
+        {% if lista.has_previous %}
+            <a href="?page={{ lista.previous_page_number }}">anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ lista.number }} de {{ lista.paginator.num_pages }}.
+        </span>
+
+        {% if lista.has_next %}
+            <a href="?page={{ lista.next_page_number }}">próximo</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+
+
+<div class="col-md-6">
+Alunos dentro do Auditório {{ lista_dentro | length }}
+ <table class="table">
+    <thead>
+      <tr>
+        <th>RA</th>
+        <th>Entrada</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for l in lista_dentro %}
+      <tr  class="info">
+        <td>{{ l.ra }}</td>
+        <td>{{ l.data_hora_entrada  |date:"D d M Y : g:i:s"}}</td>
+        <td></td>
+      </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+
+
+{% endblock content %}
